@@ -31,6 +31,7 @@ from torchtitan.tools.profiling import (
     maybe_enable_memory_snapshot,
     maybe_enable_profiling,
 )
+from torch.amp import autocast
 
 
 class Trainer(torch.distributed.checkpoint.stateful.Stateful):
@@ -375,17 +376,18 @@ class Trainer(torch.distributed.checkpoint.stateful.Stateful):
         if parallel_dims.pp_enabled:
             # Pipeline Parallel forward / backward inside step() call
             with self.train_context(optional_context_parallel_ctx):
-                targets, losses = (
-                    (labels, []) if self.pp_has_last_stage else (None, None)
-                )
-                if self.pp_has_first_stage:
-                    self.pp_schedule.step(
-                        inputs, target=targets, losses=losses, input_batch=inputs
+                with autocast(device_type="cuda", dtype=torch.bfloat16):
+                    targets, losses = (
+                        (labels, []) if self.pp_has_last_stage else (None, None)
                     )
-                else:
-                    self.pp_schedule.step(
-                        target=targets, losses=losses, input_batch=inputs
-                    )
+                    if self.pp_has_first_stage:
+                        self.pp_schedule.step(
+                            inputs, target=targets, losses=losses, input_batch=inputs
+                        )
+                    else:
+                        self.pp_schedule.step(
+                            target=targets, losses=losses, input_batch=inputs
+                        )
 
             # accumulate losses across pipeline microbatches
             # TODO: PP+FSDP unexpectedly puts the loss back to the CPU
@@ -397,9 +399,10 @@ class Trainer(torch.distributed.checkpoint.stateful.Stateful):
         else:
             # Non-PP forward / backward
             with self.train_context(optional_context_parallel_ctx):
-                assert len(model_parts) == 1
-                pred = model_parts[0](inputs)
-                loss = self.loss_fn(pred, labels)
+                with autocast(device_type="cuda", dtype=torch.bfloat16):
+                    assert len(model_parts) == 1
+                    pred = model_parts[0](inputs)
+                    loss = self.loss_fn(pred, labels)
                 # need to free to before bwd to avoid peaking memory
                 del pred
                 loss.backward()
