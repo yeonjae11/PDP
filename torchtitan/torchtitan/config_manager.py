@@ -327,6 +327,10 @@ class Parallelism:
     Looped schedules (e.g. Interleaved1F1B) require specifying pipeline_parallel_degree = number of ranks,
     and split_points = number of stages - 1
     """
+    pipeline_parallel_num_stages_per_rank: int = 1
+    """
+    The number of stages per rank. This is used to calculate the number of stages.
+    """
 
     pipeline_parallel_schedule_csv: str | None = ""
     """

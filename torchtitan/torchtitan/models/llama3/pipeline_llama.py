@@ -97,6 +97,7 @@ def pipeline_llama_manual_split(
         parallel_dims.pp,
         model_config.n_layers,
         parallelism_config.pipeline_parallel_layers_per_stage,
+        parallelism_config.pipeline_parallel_num_stages_per_rank,
     )
 
     def _build_stage(

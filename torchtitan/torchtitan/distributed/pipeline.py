@@ -31,6 +31,7 @@ def generate_split_points(
     num_layers_per_stage: int | None,
     input_weight: int = 1,
     output_weight: int = 1,
+    num_stages_per_rank_: int = 1,
 ) -> list[str]:
     """
     Generate a list of split points based on the input configs. In this function,
@@ -89,6 +90,8 @@ def generate_split_points(
         # In a multi-stage schedule, if num_layers_per_stage is not
         # provided, by default each pipeline rank has 2 virtual stages.
         num_stages_per_rank = 1 if is_single_stage_schedule else 2
+        if(schedule_str == "Interleaved1F1B"):
+            num_stages_per_rank = num_stages_per_rank_
         num_total_virtual_stages = pp_degree * num_stages_per_rank
 
         if num_total_virtual_stages > num_effective_layers:
