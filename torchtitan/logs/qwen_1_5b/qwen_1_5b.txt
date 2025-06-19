@@ -1,0 +1,15 @@
+_1f1b_sl2_bs16: 6450.42
+_1f1b_sl2_bs8: 5712.38
+_1f1b_sl4_bs8: 6074.71
+_I1f1b_sl2_bs16: 5719.00
+_I1f1b_sl2_bs8: 5032.46
+_I1f1b_sl4_bs8: 5363.46
+_tp_1f1b_sl2_bs16: 3782.62
+_tp_1f1b_sl2_bs8: 3548.67
+_tp_1f1b_sl4_bs8: 3911.58
+_tp_I1f1b_sl2_bs16: 3710.29
+_tp_I1f1b_sl2_bs8: 3381.88
+_tp_I1f1b_sl4_bs8: 3700.08
+_zero_sl2_bs16: 3358.83
+_zero_sl2_bs8: 1808.75
+_zero_sl4_bs8: 3373.67

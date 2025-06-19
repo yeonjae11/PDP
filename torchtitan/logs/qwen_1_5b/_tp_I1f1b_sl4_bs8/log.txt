@@ -1,0 +1,184 @@
+
+============================================================
+- exec time: 2025-06-15 10:39:11
+- command: ./run_train.sh --parallelism.tensor_parallel_degree=2 --parallelism.pipeline_parallel_degree=2 --parallelism.pipeline_parallel_schedule=Interleaved1F1B --parallelism.pipeline_parallel_num_stages_per_rank=2 --training.seq_len=4096 --training.local_batch_size=8 --job.dump_folder=logs/qwen_1_5b/_tp_I1f1b_sl4_bs8 --profiling.save_traces_folder= --metrics.save_tb_folder=
+- config file: /home2/yeonjae/tp_partition/torchtitan/torchtitan/models/llama3/train_configs/qwen_1_5b.toml
+- overrides: {'tensor_parallel_degree': 2, 'pipeline_parallel_degree': 2, 'pipeline_parallel_schedule': 'Interleaved1F1B', 'pipeline_parallel_num_stages_per_rank': 2, 'seq_len': 4096, 'local_batch_size': 8}
+============================================================
+
+--- STDOUT ---
+
+--- STDERR ---
++ NGPU=4
++ export LOG_RANK=0,1,2,3
++ LOG_RANK=0,1,2,3
++ CONFIG_FILE=/home2/yeonjae/tp_partition/torchtitan/torchtitan/models/llama3/train_configs/qwen_1_5b.toml
++ overrides=
++ '[' 9 -ne 0 ']'
++ overrides='--parallelism.tensor_parallel_degree=2 --parallelism.pipeline_parallel_degree=2 --parallelism.pipeline_parallel_schedule=Interleaved1F1B --parallelism.pipeline_parallel_num_stages_per_rank=2 --training.seq_len=4096 --training.local_batch_size=8 --job.dump_folder=logs/qwen_1_5b/_tp_I1f1b_sl4_bs8 --profiling.save_traces_folder= --metrics.save_tb_folder='
++ TORCHFT_LIGHTHOUSE=http://localhost:29510
++ PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
++ TORCHFT_LIGHTHOUSE=http://localhost:29510
++ torchrun --nproc_per_node=4 --rdzv_backend c10d --rdzv_endpoint=localhost:0 --local-ranks-filter 0,1,2,3 --role rank --tee 3 -m torchtitan.train --job.config_file /home2/yeonjae/tp_partition/torchtitan/torchtitan/models/llama3/train_configs/qwen_1_5b.toml --parallelism.tensor_parallel_degree=2 --parallelism.pipeline_parallel_degree=2 --parallelism.pipeline_parallel_schedule=Interleaved1F1B --parallelism.pipeline_parallel_num_stages_per_rank=2 --training.seq_len=4096 --training.local_batch_size=8 --job.dump_folder=logs/qwen_1_5b/_tp_I1f1b_sl4_bs8 --profiling.save_traces_folder= --metrics.save_tb_folder=
+W0615 10:39:13.126000 2152572 torch/distributed/run.py:766] 
+W0615 10:39:13.126000 2152572 torch/distributed/run.py:766] *****************************************
+W0615 10:39:13.126000 2152572 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0615 10:39:13.126000 2152572 torch/distributed/run.py:766] *****************************************
+[rank2]:[titan] 2025-06-15 10:39:18,940 - root - INFO - Starting job: Llama 3 8B training
+[rank0]:[titan] 2025-06-15 10:39:18,953 - root - INFO - Starting job: Llama 3 8B training
+[rank1]:[titan] 2025-06-15 10:39:18,993 - root - INFO - Starting job: Llama 3 8B training
+[rank3]:[titan] 2025-06-15 10:39:18,984 - root - INFO - Starting job: Llama 3 8B training
+[rank0]:[titan] 2025-06-15 10:39:19,079 - root - WARNING - ENV[TORCH_NCCL_ASYNC_ERROR_HANDLING] = 1 will be overridden to 3 based on job config
+[rank0]:[titan] 2025-06-15 10:39:19,084 - root - INFO - Building 2-D device mesh with ['pp', 'tp'], [2, 2]
+[rank0]:[titan] 2025-06-15 10:39:19,087 - root - INFO - [GC] Initial GC collection. 0.00 seconds.
+[rank2]:[titan] 2025-06-15 10:39:19,727 - root - WARNING - ENV[TORCH_NCCL_ASYNC_ERROR_HANDLING] = 1 will be overridden to 3 based on job config
+[rank2]:[titan] 2025-06-15 10:39:19,731 - root - INFO - Building 2-D device mesh with ['pp', 'tp'], [2, 2]
+[rank2]:[titan] 2025-06-15 10:39:19,734 - root - INFO - [GC] Initial GC collection. 0.00 seconds.
+[rank3]:[titan] 2025-06-15 10:39:20,035 - root - WARNING - ENV[TORCH_NCCL_ASYNC_ERROR_HANDLING] = 1 will be overridden to 3 based on job config
+[rank3]:[titan] 2025-06-15 10:39:20,039 - root - INFO - Building 2-D device mesh with ['pp', 'tp'], [2, 2]
+[rank3]:[titan] 2025-06-15 10:39:20,041 - root - INFO - [GC] Initial GC collection. 0.00 seconds.
+[rank1]:[titan] 2025-06-15 10:39:20,092 - root - WARNING - ENV[TORCH_NCCL_ASYNC_ERROR_HANDLING] = 1 will be overridden to 3 based on job config
+[rank1]:[titan] 2025-06-15 10:39:20,097 - root - INFO - Building 2-D device mesh with ['pp', 'tp'], [2, 2]
+[rank1]:[titan] 2025-06-15 10:39:20,101 - root - INFO - [GC] Initial GC collection. 0.00 seconds.
+[rank1]:[rank1]:[W615 10:39:20.665570638 Utils.hpp:137] Warning: Environment variable TORCH_NCCL_TRACE_BUFFER_SIZE is deprecated; use TORCH_FR_BUFFER_SIZE instead (function operator())
+[rank2]:[rank2]:[W615 10:39:20.664264697 Utils.hpp:137] Warning: Environment variable TORCH_NCCL_TRACE_BUFFER_SIZE is deprecated; use TORCH_FR_BUFFER_SIZE instead (function operator())
+[rank0]:[rank0]:[W615 10:39:20.664207727 Utils.hpp:137] Warning: Environment variable TORCH_NCCL_TRACE_BUFFER_SIZE is deprecated; use TORCH_FR_BUFFER_SIZE instead (function operator())
+[rank3]:[rank3]:[W615 10:39:20.665398959 Utils.hpp:137] Warning: Environment variable TORCH_NCCL_TRACE_BUFFER_SIZE is deprecated; use TORCH_FR_BUFFER_SIZE instead (function operator())
+[rank1]:[titan] 2025-06-15 10:39:20,810 - root - INFO - TikTokenizer built: #words 128256, BOS ID 128000, EOS ID 128001
+[rank1]:[titan] 2025-06-15 10:39:20,810 - root - INFO - Preparing c4 dataset from allenai/c4
+[rank2]:[titan] 2025-06-15 10:39:20,831 - root - INFO - TikTokenizer built: #words 128256, BOS ID 128000, EOS ID 128001
+[rank2]:[titan] 2025-06-15 10:39:20,831 - root - INFO - Preparing c4 dataset from allenai/c4
+[rank0]:[titan] 2025-06-15 10:39:20,826 - root - INFO - TikTokenizer built: #words 128256, BOS ID 128000, EOS ID 128001
+[rank0]:[titan] 2025-06-15 10:39:20,827 - root - INFO - Preparing c4 dataset from allenai/c4
+[rank3]:[titan] 2025-06-15 10:39:20,836 - root - INFO - TikTokenizer built: #words 128256, BOS ID 128000, EOS ID 128001
+[rank3]:[titan] 2025-06-15 10:39:20,837 - root - INFO - Preparing c4 dataset from allenai/c4
+[rank2]:[titan] 2025-06-15 10:39:34,327 - root - INFO - Building llama3 1.5B with TransformerModelArgs(_enforced='This field is used to enforce all fields have defaults.', dim=1536, n_layers=28, n_heads=12, n_kv_heads=2, vocab_size=128256, multiple_of=256, intermediate_size=8960, ffn_dim_multiplier=None, norm_eps=1e-05, rope_theta=500000, max_seq_len=4096, depth_init=True, use_flex_attn=False, attn_mask_type='causal', eos_id=128001)
+[rank2]:[titan] 2025-06-15 10:39:34,597 - root - INFO - TensorBoard logging enabled. Logs will be saved at logs/qwen_1_5b/_tp_I1f1b_sl4_bs8/20250615-1039
+[rank2]:[titan] 2025-06-15 10:39:34,598 - root - INFO - CUDA capacity: NVIDIA A100-PCIE-40GB with 39.50GiB memory
+[rank2]:[titan] 2025-06-15 10:39:34,637 - root - INFO - [34mModel llama3 1.5B [31msize: 1,704,285,696 total parameters[39m
+[rank2]:[titan] 2025-06-15 10:39:34,637 - root - INFO - Compiling the loss function with torch.compile
+[rank2]:[titan] 2025-06-15 10:39:34,684 - root - INFO - No 'pipeline_parallel_split_points' provided. Here is the auto-generated split, which may be sub-optimal: ['layers.14'].
+[rank2]:[titan] 2025-06-15 10:39:34,705 - root - INFO - PP rank 1 is building stage_idx 1 with start_layer layers.14, stop_layer None
+[rank2]:[titan] 2025-06-15 10:39:34,760 - root - INFO - Applied Tensor Parallelism to the model
+[rank2]:[titan] 2025-06-15 10:39:34,761 - root - INFO - Applied full activation checkpointing to the model
+[rank2]:[titan] 2025-06-15 10:39:34,765 - root - INFO - Compiling each TransformerBlock with torch.compile
+[rank2]:[titan] 2025-06-15 10:39:34,765 - root - INFO - Using pipeline schedule Interleaved1F1B with 8 microbatches and 2 stages.
+[rank2]:[titan] 2025-06-15 10:39:35,028 - root - INFO - Peak FLOPS used for computing MFU: 3.120e+14
+[rank2]:[titan] 2025-06-15 10:39:35,028 - root - INFO - CUDA memory usage for model: 1.61GiB(4.06%)
+[rank2]:[titan] 2025-06-15 10:39:35,030 - root - INFO - Trainer is initialized with local batch size 8, global batch size 8, gradient accumulation steps 1, sequence length 4096, total steps 10 (warmup 2).
+[rank2]:[titan] 2025-06-15 10:39:35,030 - root - INFO - Training starts at step 1.
+[rank2]:[titan] 2025-06-15 10:39:35,030 - root - INFO - Profiling active. Traces will be saved at logs/qwen_1_5b/_tp_I1f1b_sl4_bs8/
+[rank0]:[titan] 2025-06-15 10:39:36,233 - root - INFO - Building llama3 1.5B with TransformerModelArgs(_enforced='This field is used to enforce all fields have defaults.', dim=1536, n_layers=28, n_heads=12, n_kv_heads=2, vocab_size=128256, multiple_of=256, intermediate_size=8960, ffn_dim_multiplier=None, norm_eps=1e-05, rope_theta=500000, max_seq_len=4096, depth_init=True, use_flex_attn=False, attn_mask_type='causal', eos_id=128001)
+[rank0]:[titan] 2025-06-15 10:39:36,503 - root - INFO - CUDA capacity: NVIDIA A100-PCIE-40GB with 39.50GiB memory
+[rank0]:[titan] 2025-06-15 10:39:36,542 - root - INFO - [34mModel llama3 1.5B [31msize: 1,704,285,696 total parameters[39m
+[rank0]:[titan] 2025-06-15 10:39:36,543 - root - INFO - Compiling the loss function with torch.compile
+[rank0]:[titan] 2025-06-15 10:39:36,588 - root - INFO - No 'pipeline_parallel_split_points' provided. Here is the auto-generated split, which may be sub-optimal: ['layers.14'].
+[rank0]:[titan] 2025-06-15 10:39:36,608 - root - INFO - PP rank 0 is building stage_idx 0 with start_layer None, stop_layer layers.14
+[rank0]:[titan] 2025-06-15 10:39:36,663 - root - INFO - Applied Tensor Parallelism to the model
+[rank0]:[titan] 2025-06-15 10:39:36,664 - root - INFO - Applied full activation checkpointing to the model
+[rank0]:[titan] 2025-06-15 10:39:36,668 - root - INFO - Compiling each TransformerBlock with torch.compile
+[rank0]:[titan] 2025-06-15 10:39:36,668 - root - INFO - Using pipeline schedule Interleaved1F1B with 8 microbatches and 2 stages.
+[rank0]:[titan] 2025-06-15 10:39:36,940 - root - INFO - Peak FLOPS used for computing MFU: 3.120e+14
+[rank0]:[titan] 2025-06-15 10:39:36,941 - root - INFO - CUDA memory usage for model: 1.61GiB(4.06%)
+[rank0]:[titan] 2025-06-15 10:39:36,942 - root - INFO - Trainer is initialized with local batch size 8, global batch size 8, gradient accumulation steps 1, sequence length 4096, total steps 10 (warmup 2).
+[rank0]:[titan] 2025-06-15 10:39:36,942 - root - INFO - Training starts at step 1.
+[rank0]:[titan] 2025-06-15 10:39:36,942 - root - INFO - Profiling active. Traces will be saved at logs/qwen_1_5b/_tp_I1f1b_sl4_bs8/
+[rank3]:[titan] 2025-06-15 10:39:39,542 - root - INFO - Building llama3 1.5B with TransformerModelArgs(_enforced='This field is used to enforce all fields have defaults.', dim=1536, n_layers=28, n_heads=12, n_kv_heads=2, vocab_size=128256, multiple_of=256, intermediate_size=8960, ffn_dim_multiplier=None, norm_eps=1e-05, rope_theta=500000, max_seq_len=4096, depth_init=True, use_flex_attn=False, attn_mask_type='causal', eos_id=128001)
+[rank3]:[titan] 2025-06-15 10:39:39,811 - root - INFO - CUDA capacity: NVIDIA A100-PCIE-40GB with 39.50GiB memory
+[rank3]:[titan] 2025-06-15 10:39:39,850 - root - INFO - [34mModel llama3 1.5B [31msize: 1,704,285,696 total parameters[39m
+[rank3]:[titan] 2025-06-15 10:39:39,851 - root - INFO - Compiling the loss function with torch.compile
+[rank3]:[titan] 2025-06-15 10:39:39,915 - root - INFO - No 'pipeline_parallel_split_points' provided. Here is the auto-generated split, which may be sub-optimal: ['layers.14'].
+[rank3]:[titan] 2025-06-15 10:39:39,935 - root - INFO - PP rank 1 is building stage_idx 1 with start_layer layers.14, stop_layer None
+[rank3]:[titan] 2025-06-15 10:39:39,990 - root - INFO - Applied Tensor Parallelism to the model
+[rank3]:[titan] 2025-06-15 10:39:39,990 - root - INFO - Applied full activation checkpointing to the model
+[rank3]:[titan] 2025-06-15 10:39:39,995 - root - INFO - Compiling each TransformerBlock with torch.compile
+[rank3]:[titan] 2025-06-15 10:39:39,995 - root - INFO - Using pipeline schedule Interleaved1F1B with 8 microbatches and 2 stages.
+[rank3]:[titan] 2025-06-15 10:39:40,268 - root - INFO - Peak FLOPS used for computing MFU: 3.120e+14
+[rank3]:[titan] 2025-06-15 10:39:40,268 - root - INFO - CUDA memory usage for model: 1.61GiB(4.06%)
+[rank3]:[titan] 2025-06-15 10:39:40,269 - root - INFO - Trainer is initialized with local batch size 8, global batch size 8, gradient accumulation steps 1, sequence length 4096, total steps 10 (warmup 2).
+[rank3]:[titan] 2025-06-15 10:39:40,269 - root - INFO - Training starts at step 1.
+[rank3]:[titan] 2025-06-15 10:39:40,269 - root - INFO - Profiling active. Traces will be saved at logs/qwen_1_5b/_tp_I1f1b_sl4_bs8/
+[rank1]:[titan] 2025-06-15 10:39:41,597 - root - INFO - Building llama3 1.5B with TransformerModelArgs(_enforced='This field is used to enforce all fields have defaults.', dim=1536, n_layers=28, n_heads=12, n_kv_heads=2, vocab_size=128256, multiple_of=256, intermediate_size=8960, ffn_dim_multiplier=None, norm_eps=1e-05, rope_theta=500000, max_seq_len=4096, depth_init=True, use_flex_attn=False, attn_mask_type='causal', eos_id=128001)
+[rank1]:[titan] 2025-06-15 10:39:41,872 - root - INFO - CUDA capacity: NVIDIA A100-PCIE-40GB with 39.50GiB memory
+[rank1]:[titan] 2025-06-15 10:39:41,910 - root - INFO - [34mModel llama3 1.5B [31msize: 1,704,285,696 total parameters[39m
+[rank1]:[titan] 2025-06-15 10:39:41,910 - root - INFO - Compiling the loss function with torch.compile
+[rank1]:[titan] 2025-06-15 10:39:41,957 - root - INFO - No 'pipeline_parallel_split_points' provided. Here is the auto-generated split, which may be sub-optimal: ['layers.14'].
+[rank1]:[titan] 2025-06-15 10:39:41,978 - root - INFO - PP rank 0 is building stage_idx 0 with start_layer None, stop_layer layers.14
+[rank1]:[titan] 2025-06-15 10:39:42,033 - root - INFO - Applied Tensor Parallelism to the model
+[rank1]:[titan] 2025-06-15 10:39:42,033 - root - INFO - Applied full activation checkpointing to the model
+[rank1]:[titan] 2025-06-15 10:39:42,037 - root - INFO - Compiling each TransformerBlock with torch.compile
+[rank1]:[titan] 2025-06-15 10:39:42,037 - root - INFO - Using pipeline schedule Interleaved1F1B with 8 microbatches and 2 stages.
+[rank1]:[titan] 2025-06-15 10:39:42,359 - root - INFO - Peak FLOPS used for computing MFU: 3.120e+14
+[rank1]:[titan] 2025-06-15 10:39:42,359 - root - INFO - CUDA memory usage for model: 1.61GiB(4.06%)
+[rank1]:[titan] 2025-06-15 10:39:42,361 - root - INFO - Trainer is initialized with local batch size 8, global batch size 8, gradient accumulation steps 1, sequence length 4096, total steps 10 (warmup 2).
+[rank1]:[titan] 2025-06-15 10:39:42,361 - root - INFO - Training starts at step 1.
+[rank1]:[titan] 2025-06-15 10:39:42,361 - root - INFO - Profiling active. Traces will be saved at logs/qwen_1_5b/_tp_I1f1b_sl4_bs8/
+[rank0]:/home2/yeonjae/tp_partition/pytorch/torch/_inductor/lowering.py:1884: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.
+[rank0]:  warnings.warn(
+[rank1]:/home2/yeonjae/tp_partition/pytorch/torch/_inductor/lowering.py:1884: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.
+[rank1]:  warnings.warn(
+[rank2]:/home2/yeonjae/tp_partition/pytorch/torch/_inductor/lowering.py:1884: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.
+[rank2]:  warnings.warn(
+[rank3]:/home2/yeonjae/tp_partition/pytorch/torch/_inductor/lowering.py:1884: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.
+[rank3]:  warnings.warn(
+[rank2]:[titan] 2025-06-15 10:39:57,706 - root - INFO - [31mstep:  1  [32mloss: 12.2496  [33mmemory: 11.34GiB(28.71%)  [34mtps: 355  [36mtflops: 3.96  [35mmfu: 1.27%[39m
+[rank2]:[titan] 2025-06-15 10:39:57,707 - root - INFO - Synchronizing and adjusting timeout for all ProcessGroups to 0:01:40
+[rank3]:[titan] 2025-06-15 10:39:57,707 - root - INFO - [31mstep:  1  [32mloss: 12.2496  [33mmemory: 11.34GiB(28.71%)  [34mtps: 459  [36mtflops: 5.12  [35mmfu: 1.64%[39m
+[rank3]:[titan] 2025-06-15 10:39:57,707 - root - INFO - Synchronizing and adjusting timeout for all ProcessGroups to 0:01:40
+[rank0]:[titan] 2025-06-15 10:39:57,735 - root - INFO - [31mstep:  1  [32mloss: -1.0000  [33mmemory:  7.26GiB(18.37%)  [34mtps: 387  [36mtflops: 4.31  [35mmfu: 1.38%[39m
+[rank0]:[titan] 2025-06-15 10:39:57,735 - root - INFO - Synchronizing and adjusting timeout for all ProcessGroups to 0:01:40
+[rank1]:[titan] 2025-06-15 10:39:57,736 - root - INFO - [31mstep:  1  [32mloss: -1.0000  [33mmemory:  7.26GiB(18.37%)  [34mtps: 518  [36mtflops: 5.78  [35mmfu: 1.85%[39m
+[rank1]:[titan] 2025-06-15 10:39:57,736 - root - INFO - Synchronizing and adjusting timeout for all ProcessGroups to 0:01:40
+[rank2]:[titan] 2025-06-15 10:39:59,938 - root - INFO - [31mstep:  2  [32mloss: 11.7124  [33mmemory: 14.33GiB(36.28%)  [34mtps: 3,673  [36mtflops: 40.98  [35mmfu: 13.13%[39m
+[rank0]:[titan] 2025-06-15 10:39:59,944 - root - INFO - [31mstep:  2  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,709  [36mtflops: 41.39  [35mmfu: 13.27%[39m
+[rank3]:[titan] 2025-06-15 10:39:59,938 - root - INFO - [31mstep:  2  [32mloss: 11.7124  [33mmemory: 14.33GiB(36.28%)  [34mtps: 3,672  [36mtflops: 40.97  [35mmfu: 13.13%[39m
+[rank1]:[titan] 2025-06-15 10:39:59,944 - root - INFO - [31mstep:  2  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,711  [36mtflops: 41.40  [35mmfu: 13.27%[39m
+[rank2]:[titan] 2025-06-15 10:40:02,139 - root - INFO - [31mstep:  3  [32mloss: 14.5129  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,724  [36mtflops: 41.55  [35mmfu: 13.32%[39m
+[rank3]:[titan] 2025-06-15 10:40:02,138 - root - INFO - [31mstep:  3  [32mloss: 14.5129  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,724  [36mtflops: 41.55  [35mmfu: 13.32%[39m
+[rank0]:[titan] 2025-06-15 10:40:02,146 - root - INFO - [31mstep:  3  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,720  [36mtflops: 41.50  [35mmfu: 13.30%[39m
+[rank1]:[titan] 2025-06-15 10:40:02,146 - root - INFO - [31mstep:  3  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,720  [36mtflops: 41.51  [35mmfu: 13.30%[39m
+[rank3]:[titan] 2025-06-15 10:40:04,344 - root - INFO - [31mstep:  4  [32mloss: 12.2384  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,715  [36mtflops: 41.45  [35mmfu: 13.28%[39m
+[rank2]:[titan] 2025-06-15 10:40:04,345 - root - INFO - [31mstep:  4  [32mloss: 12.2384  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,715  [36mtflops: 41.45  [35mmfu: 13.29%[39m
+[rank1]:[titan] 2025-06-15 10:40:04,351 - root - INFO - [31mstep:  4  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,716  [36mtflops: 41.46  [35mmfu: 13.29%[39m
+[rank0]:[titan] 2025-06-15 10:40:04,351 - root - INFO - [31mstep:  4  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,717  [36mtflops: 41.47  [35mmfu: 13.29%[39m
+[rank2]:[titan] 2025-06-15 10:40:06,540 - root - INFO - [31mstep:  5  [32mloss: 10.4858  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,733  [36mtflops: 41.66  [35mmfu: 13.35%[39m
+[rank1]:[titan] 2025-06-15 10:40:06,546 - root - INFO - [31mstep:  5  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,734  [36mtflops: 41.66  [35mmfu: 13.35%[39m
+[rank3]:[titan] 2025-06-15 10:40:06,540 - root - INFO - [31mstep:  5  [32mloss: 10.4858  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,733  [36mtflops: 41.65  [35mmfu: 13.35%[39m
+[rank0]:[titan] 2025-06-15 10:40:06,546 - root - INFO - [31mstep:  5  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,733  [36mtflops: 41.65  [35mmfu: 13.35%[39m
+[rank0]:[titan] 2025-06-15 10:40:08,745 - root - INFO - [31mstep:  6  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,725  [36mtflops: 41.56  [35mmfu: 13.32%[39m
+[rank1]:[titan] 2025-06-15 10:40:08,745 - root - INFO - [31mstep:  6  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,727  [36mtflops: 41.58  [35mmfu: 13.33%[39m
+[rank2]:[titan] 2025-06-15 10:40:08,734 - root - INFO - [31mstep:  6  [32mloss:  9.8979  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,736  [36mtflops: 41.68  [35mmfu: 13.36%[39m
+[rank3]:[titan] 2025-06-15 10:40:08,734 - root - INFO - [31mstep:  6  [32mloss:  9.8979  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,735  [36mtflops: 41.68  [35mmfu: 13.36%[39m
+[rank0]:[titan] 2025-06-15 10:40:11,022 - root - INFO - [31mstep:  7  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,599  [36mtflops: 40.16  [35mmfu: 12.87%[39m
+[rank3]:[titan] 2025-06-15 10:40:11,014 - root - INFO - [31mstep:  7  [32mloss:  9.5993  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,594  [36mtflops: 40.10  [35mmfu: 12.85%[39m
+[rank2]:[titan] 2025-06-15 10:40:11,014 - root - INFO - [31mstep:  7  [32mloss:  9.5993  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,594  [36mtflops: 40.10  [35mmfu: 12.85%[39m
+[rank1]:[titan] 2025-06-15 10:40:11,022 - root - INFO - [31mstep:  7  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,598  [36mtflops: 40.15  [35mmfu: 12.87%[39m
+[rank2]:[titan] 2025-06-15 10:40:13,227 - root - INFO - [31mstep:  8  [32mloss:  9.4015  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,703  [36mtflops: 41.32  [35mmfu: 13.24%[39m
+[rank0]:[titan] 2025-06-15 10:40:13,235 - root - INFO - [31mstep:  8  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,702  [36mtflops: 41.31  [35mmfu: 13.24%[39m
+[rank3]:[titan] 2025-06-15 10:40:13,227 - root - INFO - [31mstep:  8  [32mloss:  9.4015  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,704  [36mtflops: 41.33  [35mmfu: 13.25%[39m
+[rank1]:[titan] 2025-06-15 10:40:13,236 - root - INFO - [31mstep:  8  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,701  [36mtflops: 41.30  [35mmfu: 13.24%[39m
+[rank0]:[titan] 2025-06-15 10:40:15,442 - root - INFO - [31mstep:  9  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,712  [36mtflops: 41.41  [35mmfu: 13.27%[39m
+[rank1]:[titan] 2025-06-15 10:40:15,442 - root - INFO - [31mstep:  9  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,713  [36mtflops: 41.43  [35mmfu: 13.28%[39m
+[rank2]:[titan] 2025-06-15 10:40:15,435 - root - INFO - [31mstep:  9  [32mloss:  9.0715  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,712  [36mtflops: 41.42  [35mmfu: 13.28%[39m
+[rank3]:[titan] 2025-06-15 10:40:15,435 - root - INFO - [31mstep:  9  [32mloss:  9.0715  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,712  [36mtflops: 41.42  [35mmfu: 13.28%[39m
+[rank2]:[titan] 2025-06-15 10:40:17,637 - root - INFO - [31mstep: 10  [32mloss:  8.9328  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,722  [36mtflops: 41.53  [35mmfu: 13.31%[39m
+[rank1]:[titan] 2025-06-15 10:40:17,649 - root - INFO - [31mstep: 10  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,713  [36mtflops: 41.42  [35mmfu: 13.28%[39m
+[rank0]:[titan] 2025-06-15 10:40:17,650 - root - INFO - [31mstep: 10  [32mloss: -1.0000  [33mmemory:  8.37GiB(21.19%)  [34mtps: 3,711  [36mtflops: 41.41  [35mmfu: 13.27%[39m
+[rank3]:[titan] 2025-06-15 10:40:17,637 - root - INFO - [31mstep: 10  [32mloss:  8.9328  [33mmemory: 15.05GiB(38.11%)  [34mtps: 3,722  [36mtflops: 41.53  [35mmfu: 13.31%[39m
+[rank0]:[titan] 2025-06-15 10:40:18,644 - root - INFO - Dumping profiler traces at step 10
+[rank1]:[titan] 2025-06-15 10:40:18,646 - root - INFO - Dumping profiler traces at step 10
+[rank2]:[titan] 2025-06-15 10:40:18,732 - root - INFO - Dumping profiler traces at step 10
+[rank3]:[titan] 2025-06-15 10:40:18,699 - root - INFO - Dumping profiler traces at step 10
+[rank1]:[titan] 2025-06-15 10:40:19,049 - root - INFO - Finished dumping profiler traces in 0.40 seconds
+[rank1]:[titan] 2025-06-15 10:40:19,049 - root - INFO - Training completed
+[rank0]:[titan] 2025-06-15 10:40:19,050 - root - INFO - Finished dumping profiler traces in 0.41 seconds
+[rank0]:[titan] 2025-06-15 10:40:19,050 - root - INFO - Sleeping 2 seconds for other ranks to complete
+[rank3]:[titan] 2025-06-15 10:40:19,128 - root - INFO - Finished dumping profiler traces in 0.43 seconds
+[rank3]:[titan] 2025-06-15 10:40:19,129 - root - INFO - Training completed
+[rank2]:[titan] 2025-06-15 10:40:19,172 - root - INFO - Finished dumping profiler traces in 0.44 seconds
+[rank2]:[titan] 2025-06-15 10:40:19,174 - root - INFO - Training completed
+[rank0]:[titan] 2025-06-15 10:40:21,052 - root - INFO - Training completed
+[rank3]:[titan] 2025-06-15 10:40:21,559 - root - INFO - Process group destroyed.
+[rank1]:[titan] 2025-06-15 10:40:21,647 - root - INFO - Process group destroyed.
+[rank2]:[titan] 2025-06-15 10:40:21,643 - root - INFO - Process group destroyed.
+[rank0]:[titan] 2025-06-15 10:40:21,645 - root - INFO - Process group destroyed.

@@ -1,0 +1,300 @@
+
+============================================================
+- exec time: 2025-06-15 10:19:45
+- command: ./run_train.sh --parallelism.pipeline_parallel_degree=4 --parallelism.tensor_parallel_degree=1 --parallelism.pipeline_parallel_schedule=Interleaved1F1B --parallelism.pipeline_parallel_num_stages_per_rank=2 --training.seq_len=2048 --training.local_batch_size=16 --job.dump_folder=logs/qwen_1_5b/_I1f1b_sl2_bs16 --profiling.save_traces_folder= --metrics.save_tb_folder=
+- config file: /home2/yeonjae/tp_partition/torchtitan/torchtitan/models/llama3/train_configs/qwen_1_5b.toml
+- overrides: {'pipeline_parallel_degree': 4, 'tensor_parallel_degree': 1, 'pipeline_parallel_schedule': 'Interleaved1F1B', 'pipeline_parallel_num_stages_per_rank': 2, 'seq_len': 2048, 'local_batch_size': 16}
+============================================================
+
+--- STDOUT ---
+
+--- STDERR ---
++ NGPU=4
++ export LOG_RANK=0,1,2,3
++ LOG_RANK=0,1,2,3
++ CONFIG_FILE=/home2/yeonjae/tp_partition/torchtitan/torchtitan/models/llama3/train_configs/qwen_1_5b.toml
++ overrides=
++ '[' 9 -ne 0 ']'
++ overrides='--parallelism.pipeline_parallel_degree=4 --parallelism.tensor_parallel_degree=1 --parallelism.pipeline_parallel_schedule=Interleaved1F1B --parallelism.pipeline_parallel_num_stages_per_rank=2 --training.seq_len=2048 --training.local_batch_size=16 --job.dump_folder=logs/qwen_1_5b/_I1f1b_sl2_bs16 --profiling.save_traces_folder= --metrics.save_tb_folder='
++ TORCHFT_LIGHTHOUSE=http://localhost:29510
++ PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
++ TORCHFT_LIGHTHOUSE=http://localhost:29510
++ torchrun --nproc_per_node=4 --rdzv_backend c10d --rdzv_endpoint=localhost:0 --local-ranks-filter 0,1,2,3 --role rank --tee 3 -m torchtitan.train --job.config_file /home2/yeonjae/tp_partition/torchtitan/torchtitan/models/llama3/train_configs/qwen_1_5b.toml --parallelism.pipeline_parallel_degree=4 --parallelism.tensor_parallel_degree=1 --parallelism.pipeline_parallel_schedule=Interleaved1F1B --parallelism.pipeline_parallel_num_stages_per_rank=2 --training.seq_len=2048 --training.local_batch_size=16 --job.dump_folder=logs/qwen_1_5b/_I1f1b_sl2_bs16 --profiling.save_traces_folder= --metrics.save_tb_folder=
+W0615 10:19:47.220000 2127031 torch/distributed/run.py:766] 
+W0615 10:19:47.220000 2127031 torch/distributed/run.py:766] *****************************************
+W0615 10:19:47.220000 2127031 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0615 10:19:47.220000 2127031 torch/distributed/run.py:766] *****************************************
+[rank0]:[titan] 2025-06-15 10:19:52,873 - root - INFO - Starting job: Llama 3 8B training
+[rank3]:[titan] 2025-06-15 10:19:52,800 - root - INFO - Starting job: Llama 3 8B training
+[rank2]:[titan] 2025-06-15 10:19:52,912 - root - INFO - Starting job: Llama 3 8B training
+[rank1]:[titan] 2025-06-15 10:19:52,982 - root - INFO - Starting job: Llama 3 8B training
+[rank0]:[titan] 2025-06-15 10:19:53,025 - root - WARNING - ENV[TORCH_NCCL_ASYNC_ERROR_HANDLING] = 1 will be overridden to 3 based on job config
+[rank0]:[titan] 2025-06-15 10:19:53,029 - root - INFO - Building 1-D device mesh with ['pp'], [4]
+[rank0]:[titan] 2025-06-15 10:19:53,031 - root - INFO - [GC] Initial GC collection. 0.00 seconds.
+[rank3]:[titan] 2025-06-15 10:19:53,438 - root - WARNING - ENV[TORCH_NCCL_ASYNC_ERROR_HANDLING] = 1 will be overridden to 3 based on job config
+[rank3]:[titan] 2025-06-15 10:19:53,464 - root - INFO - Building 1-D device mesh with ['pp'], [4]
+[rank3]:[titan] 2025-06-15 10:19:53,470 - root - INFO - [GC] Initial GC collection. 0.00 seconds.
+[rank1]:[titan] 2025-06-15 10:19:53,970 - root - WARNING - ENV[TORCH_NCCL_ASYNC_ERROR_HANDLING] = 1 will be overridden to 3 based on job config
+[rank1]:[titan] 2025-06-15 10:19:53,977 - root - INFO - Building 1-D device mesh with ['pp'], [4]
+[rank1]:[titan] 2025-06-15 10:19:53,979 - root - INFO - [GC] Initial GC collection. 0.00 seconds.
+[rank2]:[titan] 2025-06-15 10:19:53,922 - root - WARNING - ENV[TORCH_NCCL_ASYNC_ERROR_HANDLING] = 1 will be overridden to 3 based on job config
+[rank2]:[titan] 2025-06-15 10:19:53,928 - root - INFO - Building 1-D device mesh with ['pp'], [4]
+[rank2]:[titan] 2025-06-15 10:19:53,931 - root - INFO - [GC] Initial GC collection. 0.00 seconds.
+[rank1]:[rank1]:[W615 10:19:54.538703211 Utils.hpp:137] Warning: Environment variable TORCH_NCCL_TRACE_BUFFER_SIZE is deprecated; use TORCH_FR_BUFFER_SIZE instead (function operator())
+[rank3]:[rank3]:[W615 10:19:54.539358005 Utils.hpp:137] Warning: Environment variable TORCH_NCCL_TRACE_BUFFER_SIZE is deprecated; use TORCH_FR_BUFFER_SIZE instead (function operator())
+[rank2]:[rank2]:[W615 10:19:54.550214929 Utils.hpp:137] Warning: Environment variable TORCH_NCCL_TRACE_BUFFER_SIZE is deprecated; use TORCH_FR_BUFFER_SIZE instead (function operator())
+[rank0]:[rank0]:[W615 10:19:54.563575851 Utils.hpp:137] Warning: Environment variable TORCH_NCCL_TRACE_BUFFER_SIZE is deprecated; use TORCH_FR_BUFFER_SIZE instead (function operator())
+[rank0]:[titan] 2025-06-15 10:19:54,695 - root - INFO - TikTokenizer built: #words 128256, BOS ID 128000, EOS ID 128001
+[rank0]:[titan] 2025-06-15 10:19:54,695 - root - INFO - Preparing c4 dataset from allenai/c4
+[rank0]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:[titan] 2025-06-15 10:19:54,721 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:Retrying in 1s [Retry 1/5].
+[rank0]:[titan] 2025-06-15 10:19:54,722 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[rank1]:[titan] 2025-06-15 10:19:54,692 - root - INFO - TikTokenizer built: #words 128256, BOS ID 128000, EOS ID 128001
+[rank1]:[titan] 2025-06-15 10:19:54,692 - root - INFO - Preparing c4 dataset from allenai/c4
+[rank1]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:[titan] 2025-06-15 10:19:54,719 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:Retrying in 1s [Retry 1/5].
+[rank1]:[titan] 2025-06-15 10:19:54,719 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[rank3]:[titan] 2025-06-15 10:19:54,700 - root - INFO - TikTokenizer built: #words 128256, BOS ID 128000, EOS ID 128001
+[rank3]:[titan] 2025-06-15 10:19:54,701 - root - INFO - Preparing c4 dataset from allenai/c4
+[rank3]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:[titan] 2025-06-15 10:19:54,730 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:Retrying in 1s [Retry 1/5].
+[rank3]:[titan] 2025-06-15 10:19:54,730 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[rank2]:[titan] 2025-06-15 10:19:54,696 - root - INFO - TikTokenizer built: #words 128256, BOS ID 128000, EOS ID 128001
+[rank2]:[titan] 2025-06-15 10:19:54,696 - root - INFO - Preparing c4 dataset from allenai/c4
+[rank2]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:[titan] 2025-06-15 10:19:54,722 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:Retrying in 1s [Retry 1/5].
+[rank2]:[titan] 2025-06-15 10:19:54,722 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[rank0]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:[titan] 2025-06-15 10:19:55,731 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:Retrying in 2s [Retry 2/5].
+[rank0]:[titan] 2025-06-15 10:19:55,731 - huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[rank1]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:[titan] 2025-06-15 10:19:55,731 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:Retrying in 2s [Retry 2/5].
+[rank1]:[titan] 2025-06-15 10:19:55,731 - huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[rank3]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:[titan] 2025-06-15 10:19:55,740 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:Retrying in 2s [Retry 2/5].
+[rank3]:[titan] 2025-06-15 10:19:55,741 - huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[rank2]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:[titan] 2025-06-15 10:19:55,734 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:Retrying in 2s [Retry 2/5].
+[rank2]:[titan] 2025-06-15 10:19:55,734 - huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[rank0]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:[titan] 2025-06-15 10:19:57,741 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:Retrying in 4s [Retry 3/5].
+[rank0]:[titan] 2025-06-15 10:19:57,742 - huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[rank1]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:[titan] 2025-06-15 10:19:57,744 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:Retrying in 4s [Retry 3/5].
+[rank1]:[titan] 2025-06-15 10:19:57,748 - huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[rank3]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:[titan] 2025-06-15 10:19:57,752 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:Retrying in 4s [Retry 3/5].
+[rank3]:[titan] 2025-06-15 10:19:57,753 - huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[rank2]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:[titan] 2025-06-15 10:19:57,747 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:Retrying in 4s [Retry 3/5].
+[rank2]:[titan] 2025-06-15 10:19:57,748 - huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[rank0]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:[titan] 2025-06-15 10:20:01,756 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:Retrying in 8s [Retry 4/5].
+[rank0]:[titan] 2025-06-15 10:20:01,756 - huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[rank1]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:[titan] 2025-06-15 10:20:01,764 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:Retrying in 8s [Retry 4/5].
+[rank1]:[titan] 2025-06-15 10:20:01,764 - huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[rank3]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:[titan] 2025-06-15 10:20:01,762 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:Retrying in 8s [Retry 4/5].
+[rank3]:[titan] 2025-06-15 10:20:01,763 - huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[rank2]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:[titan] 2025-06-15 10:20:01,760 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:Retrying in 8s [Retry 4/5].
+[rank2]:[titan] 2025-06-15 10:20:01,760 - huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[rank0]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:[titan] 2025-06-15 10:20:09,770 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:Retrying in 8s [Retry 5/5].
+[rank0]:[titan] 2025-06-15 10:20:09,770 - huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[rank1]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:[titan] 2025-06-15 10:20:09,779 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:Retrying in 8s [Retry 5/5].
+[rank1]:[titan] 2025-06-15 10:20:09,779 - huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[rank3]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:[titan] 2025-06-15 10:20:09,780 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:Retrying in 8s [Retry 5/5].
+[rank3]:[titan] 2025-06-15 10:20:09,780 - huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[rank2]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:[titan] 2025-06-15 10:20:09,779 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:Retrying in 8s [Retry 5/5].
+[rank2]:[titan] 2025-06-15 10:20:09,779 - huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[rank0]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:[titan] 2025-06-15 10:20:17,786 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank0]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank0]:[titan] 2025-06-15 10:20:17,793 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank0]:Retrying in 1s [Retry 1/5].
+[rank0]:[titan] 2025-06-15 10:20:17,794 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[rank1]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:[titan] 2025-06-15 10:20:17,798 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank1]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank1]:[titan] 2025-06-15 10:20:17,810 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank1]:Retrying in 1s [Retry 1/5].
+[rank1]:[titan] 2025-06-15 10:20:17,810 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[rank3]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:[titan] 2025-06-15 10:20:17,800 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank3]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank3]:[titan] 2025-06-15 10:20:17,811 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank3]:Retrying in 1s [Retry 1/5].
+[rank3]:[titan] 2025-06-15 10:20:17,811 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[rank2]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:[titan] 2025-06-15 10:20:17,797 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/main/README.md
+[rank2]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank2]:[titan] 2025-06-15 10:20:17,805 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank2]:Retrying in 1s [Retry 1/5].
+[rank2]:[titan] 2025-06-15 10:20:17,806 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[rank0]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank0]:[titan] 2025-06-15 10:20:18,804 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank0]:Retrying in 2s [Retry 2/5].
+[rank0]:[titan] 2025-06-15 10:20:18,804 - huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[rank1]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank1]:[titan] 2025-06-15 10:20:18,823 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank1]:Retrying in 2s [Retry 2/5].
+[rank1]:[titan] 2025-06-15 10:20:18,823 - huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[rank3]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank3]:[titan] 2025-06-15 10:20:18,821 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank3]:Retrying in 2s [Retry 2/5].
+[rank3]:[titan] 2025-06-15 10:20:18,821 - huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[rank2]:HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank2]:[titan] 2025-06-15 10:20:18,817 - huggingface_hub.utils._http - WARNING - HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/allenai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py
+[rank2]:Retrying in 2s [Retry 2/5].
+[rank2]:[titan] 2025-06-15 10:20:18,817 - huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[rank0]:[titan] 2025-06-15 10:20:38,199 - root - INFO - Building llama3 1.5B with TransformerModelArgs(_enforced='This field is used to enforce all fields have defaults.', dim=1536, n_layers=28, n_heads=12, n_kv_heads=2, vocab_size=128256, multiple_of=256, intermediate_size=8960, ffn_dim_multiplier=None, norm_eps=1e-05, rope_theta=500000, max_seq_len=2048, depth_init=True, use_flex_attn=False, attn_mask_type='causal', eos_id=128001)
+[rank0]:[titan] 2025-06-15 10:20:38,467 - root - INFO - CUDA capacity: NVIDIA A100-PCIE-40GB with 39.50GiB memory
+[rank0]:[titan] 2025-06-15 10:20:38,506 - root - INFO - [34mModel llama3 1.5B [31msize: 1,704,285,696 total parameters[39m
+[rank0]:[titan] 2025-06-15 10:20:38,507 - root - INFO - Compiling the loss function with torch.compile
+[rank0]:[titan] 2025-06-15 10:20:38,567 - root - INFO - No 'pipeline_parallel_split_points' provided. Here is the auto-generated split, which may be sub-optimal: ['layers.6', 'layers.14', 'layers.22'].
+[rank0]:[titan] 2025-06-15 10:20:38,587 - root - INFO - PP rank 0 is building stage_idx 0 with start_layer None, stop_layer layers.6
+[rank0]:[titan] 2025-06-15 10:20:38,588 - root - INFO - Applied full activation checkpointing to the model
+[rank0]:[titan] 2025-06-15 10:20:38,590 - root - INFO - Compiling each TransformerBlock with torch.compile
+[rank0]:[titan] 2025-06-15 10:20:38,590 - root - INFO - Using pipeline schedule Interleaved1F1B with 16 microbatches and 4 stages.
+[rank0]:[titan] 2025-06-15 10:20:38,760 - root - INFO - Peak FLOPS used for computing MFU: 3.120e+14
+[rank0]:[titan] 2025-06-15 10:20:38,761 - root - INFO - CUDA memory usage for model: 1.80GiB(4.56%)
+[rank0]:[titan] 2025-06-15 10:20:38,761 - root - INFO - Trainer is initialized with local batch size 16, global batch size 16, gradient accumulation steps 1, sequence length 2048, total steps 10 (warmup 2).
+[rank0]:[titan] 2025-06-15 10:20:38,761 - root - INFO - Training starts at step 1.
+[rank0]:[titan] 2025-06-15 10:20:38,762 - root - INFO - Profiling active. Traces will be saved at logs/qwen_1_5b/_I1f1b_sl2_bs16/
+[rank2]:[titan] 2025-06-15 10:20:38,809 - root - INFO - Building llama3 1.5B with TransformerModelArgs(_enforced='This field is used to enforce all fields have defaults.', dim=1536, n_layers=28, n_heads=12, n_kv_heads=2, vocab_size=128256, multiple_of=256, intermediate_size=8960, ffn_dim_multiplier=None, norm_eps=1e-05, rope_theta=500000, max_seq_len=2048, depth_init=True, use_flex_attn=False, attn_mask_type='causal', eos_id=128001)
+[rank2]:[titan] 2025-06-15 10:20:39,078 - root - INFO - CUDA capacity: NVIDIA A100-PCIE-40GB with 39.50GiB memory
+[rank2]:[titan] 2025-06-15 10:20:39,121 - root - INFO - [34mModel llama3 1.5B [31msize: 1,704,285,696 total parameters[39m
+[rank2]:[titan] 2025-06-15 10:20:39,121 - root - INFO - Compiling the loss function with torch.compile
+[rank2]:[titan] 2025-06-15 10:20:39,167 - root - INFO - No 'pipeline_parallel_split_points' provided. Here is the auto-generated split, which may be sub-optimal: ['layers.6', 'layers.14', 'layers.22'].
+[rank1]:[titan] 2025-06-15 10:20:39,184 - root - INFO - Building llama3 1.5B with TransformerModelArgs(_enforced='This field is used to enforce all fields have defaults.', dim=1536, n_layers=28, n_heads=12, n_kv_heads=2, vocab_size=128256, multiple_of=256, intermediate_size=8960, ffn_dim_multiplier=None, norm_eps=1e-05, rope_theta=500000, max_seq_len=2048, depth_init=True, use_flex_attn=False, attn_mask_type='causal', eos_id=128001)
+[rank2]:[titan] 2025-06-15 10:20:39,187 - root - INFO - PP rank 2 is building stage_idx 2 with start_layer layers.14, stop_layer layers.22
+[rank2]:[titan] 2025-06-15 10:20:39,187 - root - INFO - Applied full activation checkpointing to the model
+[rank2]:[titan] 2025-06-15 10:20:39,190 - root - INFO - Compiling each TransformerBlock with torch.compile
+[rank2]:[titan] 2025-06-15 10:20:39,190 - root - INFO - Using pipeline schedule Interleaved1F1B with 16 microbatches and 4 stages.
+[rank2]:[titan] 2025-06-15 10:20:39,346 - root - INFO - Peak FLOPS used for computing MFU: 3.120e+14
+[rank2]:[titan] 2025-06-15 10:20:39,346 - root - INFO - CUDA memory usage for model: 1.41GiB(3.57%)
+[rank2]:[titan] 2025-06-15 10:20:39,347 - root - INFO - Trainer is initialized with local batch size 16, global batch size 16, gradient accumulation steps 1, sequence length 2048, total steps 10 (warmup 2).
+[rank2]:[titan] 2025-06-15 10:20:39,347 - root - INFO - Training starts at step 1.
+[rank2]:[titan] 2025-06-15 10:20:39,347 - root - INFO - Profiling active. Traces will be saved at logs/qwen_1_5b/_I1f1b_sl2_bs16/
+[rank1]:[titan] 2025-06-15 10:20:39,452 - root - INFO - CUDA capacity: NVIDIA A100-PCIE-40GB with 39.50GiB memory
+[rank1]:[titan] 2025-06-15 10:20:39,491 - root - INFO - [34mModel llama3 1.5B [31msize: 1,704,285,696 total parameters[39m
+[rank1]:[titan] 2025-06-15 10:20:39,491 - root - INFO - Compiling the loss function with torch.compile
+[rank1]:[titan] 2025-06-15 10:20:39,551 - root - INFO - No 'pipeline_parallel_split_points' provided. Here is the auto-generated split, which may be sub-optimal: ['layers.6', 'layers.14', 'layers.22'].
+[rank1]:[titan] 2025-06-15 10:20:39,570 - root - INFO - PP rank 1 is building stage_idx 1 with start_layer layers.6, stop_layer layers.14
+[rank1]:[titan] 2025-06-15 10:20:39,571 - root - INFO - Applied full activation checkpointing to the model
+[rank1]:[titan] 2025-06-15 10:20:39,573 - root - INFO - Compiling each TransformerBlock with torch.compile
+[rank1]:[titan] 2025-06-15 10:20:39,573 - root - INFO - Using pipeline schedule Interleaved1F1B with 16 microbatches and 4 stages.
+[rank1]:[titan] 2025-06-15 10:20:39,747 - root - INFO - Peak FLOPS used for computing MFU: 3.120e+14
+[rank1]:[titan] 2025-06-15 10:20:39,748 - root - INFO - CUDA memory usage for model: 1.41GiB(3.57%)
+[rank1]:[titan] 2025-06-15 10:20:39,749 - root - INFO - Trainer is initialized with local batch size 16, global batch size 16, gradient accumulation steps 1, sequence length 2048, total steps 10 (warmup 2).
+[rank1]:[titan] 2025-06-15 10:20:39,749 - root - INFO - Training starts at step 1.
+[rank1]:[titan] 2025-06-15 10:20:39,749 - root - INFO - Profiling active. Traces will be saved at logs/qwen_1_5b/_I1f1b_sl2_bs16/
+[rank3]:[titan] 2025-06-15 10:20:40,182 - root - INFO - Building llama3 1.5B with TransformerModelArgs(_enforced='This field is used to enforce all fields have defaults.', dim=1536, n_layers=28, n_heads=12, n_kv_heads=2, vocab_size=128256, multiple_of=256, intermediate_size=8960, ffn_dim_multiplier=None, norm_eps=1e-05, rope_theta=500000, max_seq_len=2048, depth_init=True, use_flex_attn=False, attn_mask_type='causal', eos_id=128001)
+[rank3]:[titan] 2025-06-15 10:20:40,450 - root - INFO - TensorBoard logging enabled. Logs will be saved at logs/qwen_1_5b/_I1f1b_sl2_bs16/20250615-1020
+[rank3]:[titan] 2025-06-15 10:20:40,451 - root - INFO - CUDA capacity: NVIDIA A100-PCIE-40GB with 39.50GiB memory
+[rank3]:[titan] 2025-06-15 10:20:40,480 - root - INFO - [34mModel llama3 1.5B [31msize: 1,704,285,696 total parameters[39m
+[rank3]:[titan] 2025-06-15 10:20:40,480 - root - INFO - Compiling the loss function with torch.compile
+[rank3]:[titan] 2025-06-15 10:20:40,527 - root - INFO - No 'pipeline_parallel_split_points' provided. Here is the auto-generated split, which may be sub-optimal: ['layers.6', 'layers.14', 'layers.22'].
+[rank3]:[titan] 2025-06-15 10:20:40,549 - root - INFO - PP rank 3 is building stage_idx 3 with start_layer layers.22, stop_layer None
+[rank3]:[titan] 2025-06-15 10:20:40,549 - root - INFO - Applied full activation checkpointing to the model
+[rank3]:[titan] 2025-06-15 10:20:40,551 - root - INFO - Compiling each TransformerBlock with torch.compile
+[rank3]:[titan] 2025-06-15 10:20:40,551 - root - INFO - Using pipeline schedule Interleaved1F1B with 16 microbatches and 4 stages.
+[rank3]:[titan] 2025-06-15 10:20:40,732 - root - INFO - Peak FLOPS used for computing MFU: 3.120e+14
+[rank3]:[titan] 2025-06-15 10:20:40,733 - root - INFO - CUDA memory usage for model: 1.80GiB(4.56%)
+[rank3]:[titan] 2025-06-15 10:20:40,735 - root - INFO - Trainer is initialized with local batch size 16, global batch size 16, gradient accumulation steps 1, sequence length 2048, total steps 10 (warmup 2).
+[rank3]:[titan] 2025-06-15 10:20:40,735 - root - INFO - Training starts at step 1.
+[rank3]:[titan] 2025-06-15 10:20:40,735 - root - INFO - Profiling active. Traces will be saved at logs/qwen_1_5b/_I1f1b_sl2_bs16/
+[rank0]:/home2/yeonjae/tp_partition/pytorch/torch/_inductor/lowering.py:1884: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.
+[rank0]:  warnings.warn(
+[rank1]:/home2/yeonjae/tp_partition/pytorch/torch/_inductor/lowering.py:1884: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.
+[rank1]:  warnings.warn(
+[rank2]:/home2/yeonjae/tp_partition/pytorch/torch/_inductor/lowering.py:1884: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.
+[rank2]:  warnings.warn(
+[rank3]:/home2/yeonjae/tp_partition/pytorch/torch/_inductor/lowering.py:1884: UserWarning: Torchinductor does not support code generation for complex operators. Performance may be worse than eager.
+[rank3]:  warnings.warn(
+[rank3]:[titan] 2025-06-15 10:20:53,678 - root - INFO - [31mstep:  1  [32mloss: 12.2258  [33mmemory: 19.40GiB(49.12%)  [34mtps: 621  [36mtflops: 6.27  [35mmfu: 2.01%[39m
+[rank3]:[titan] 2025-06-15 10:20:53,679 - root - INFO - Synchronizing and adjusting timeout for all ProcessGroups to 0:01:40
+[rank0]:[titan] 2025-06-15 10:20:53,726 - root - INFO - [31mstep:  1  [32mloss: -1.0000  [33mmemory:  7.37GiB(18.66%)  [34mtps: 538  [36mtflops: 5.44  [35mmfu: 1.74%[39m
+[rank0]:[titan] 2025-06-15 10:20:53,726 - root - INFO - Synchronizing and adjusting timeout for all ProcessGroups to 0:01:40
+[rank1]:[titan] 2025-06-15 10:20:53,711 - root - INFO - [31mstep:  1  [32mloss: -1.0000  [33mmemory:  6.20GiB(15.70%)  [34mtps: 576  [36mtflops: 5.82  [35mmfu: 1.86%[39m
+[rank1]:[titan] 2025-06-15 10:20:53,712 - root - INFO - Synchronizing and adjusting timeout for all ProcessGroups to 0:01:40
+[rank2]:[titan] 2025-06-15 10:20:53,714 - root - INFO - [31mstep:  1  [32mloss: -1.0000  [33mmemory:  6.22GiB(15.75%)  [34mtps: 561  [36mtflops: 5.67  [35mmfu: 1.82%[39m
+[rank2]:[titan] 2025-06-15 10:20:53,715 - root - INFO - Synchronizing and adjusting timeout for all ProcessGroups to 0:01:40
+[rank3]:[titan] 2025-06-15 10:20:55,143 - root - INFO - [31mstep:  2  [32mloss: 11.7219  [33mmemory: 22.49GiB(56.94%)  [34mtps: 5,595  [36mtflops: 56.51  [35mmfu: 18.11%[39m
+[rank2]:[titan] 2025-06-15 10:20:55,139 - root - INFO - [31mstep:  2  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,754  [36mtflops: 58.12  [35mmfu: 18.63%[39m
+[rank0]:[titan] 2025-06-15 10:20:55,142 - root - INFO - [31mstep:  2  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,786  [36mtflops: 58.45  [35mmfu: 18.73%[39m
+[rank1]:[titan] 2025-06-15 10:20:55,139 - root - INFO - [31mstep:  2  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,740  [36mtflops: 57.98  [35mmfu: 18.58%[39m
+[rank3]:[titan] 2025-06-15 10:20:56,561 - root - INFO - [31mstep:  3  [32mloss: 14.7110  [33mmemory: 23.97GiB(60.70%)  [34mtps: 5,780  [36mtflops: 58.38  [35mmfu: 18.71%[39m
+[rank0]:[titan] 2025-06-15 10:20:56,561 - root - INFO - [31mstep:  3  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,775  [36mtflops: 58.33  [35mmfu: 18.70%[39m
+[rank2]:[titan] 2025-06-15 10:20:56,558 - root - INFO - [31mstep:  3  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,774  [36mtflops: 58.32  [35mmfu: 18.69%[39m
+[rank1]:[titan] 2025-06-15 10:20:56,558 - root - INFO - [31mstep:  3  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,774  [36mtflops: 58.32  [35mmfu: 18.69%[39m
+[rank3]:[titan] 2025-06-15 10:20:57,973 - root - INFO - [31mstep:  4  [32mloss: 11.6148  [33mmemory: 23.97GiB(60.70%)  [34mtps: 5,807  [36mtflops: 58.65  [35mmfu: 18.80%[39m
+[rank2]:[titan] 2025-06-15 10:20:57,970 - root - INFO - [31mstep:  4  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,805  [36mtflops: 58.63  [35mmfu: 18.79%[39m
+[rank0]:[titan] 2025-06-15 10:20:57,973 - root - INFO - [31mstep:  4  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,804  [36mtflops: 58.63  [35mmfu: 18.79%[39m
+[rank1]:[titan] 2025-06-15 10:20:57,970 - root - INFO - [31mstep:  4  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,805  [36mtflops: 58.63  [35mmfu: 18.79%[39m
+[rank3]:[titan] 2025-06-15 10:20:59,380 - root - INFO - [31mstep:  5  [32mloss:  9.9462  [33mmemory: 23.97GiB(60.70%)  [34mtps: 5,826  [36mtflops: 58.85  [35mmfu: 18.86%[39m
+[rank0]:[titan] 2025-06-15 10:20:59,380 - root - INFO - [31mstep:  5  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,824  [36mtflops: 58.83  [35mmfu: 18.85%[39m
+[rank2]:[titan] 2025-06-15 10:20:59,377 - root - INFO - [31mstep:  5  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,824  [36mtflops: 58.82  [35mmfu: 18.85%[39m
+[rank1]:[titan] 2025-06-15 10:20:59,377 - root - INFO - [31mstep:  5  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,824  [36mtflops: 58.82  [35mmfu: 18.85%[39m
+[rank3]:[titan] 2025-06-15 10:21:00,783 - root - INFO - [31mstep:  6  [32mloss:  9.7108  [33mmemory: 23.97GiB(60.70%)  [34mtps: 5,843  [36mtflops: 59.02  [35mmfu: 18.92%[39m
+[rank0]:[titan] 2025-06-15 10:21:00,783 - root - INFO - [31mstep:  6  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,842  [36mtflops: 59.00  [35mmfu: 18.91%[39m
+[rank2]:[titan] 2025-06-15 10:21:00,780 - root - INFO - [31mstep:  6  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,851  [36mtflops: 59.10  [35mmfu: 18.94%[39m
+[rank1]:[titan] 2025-06-15 10:21:00,780 - root - INFO - [31mstep:  6  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,851  [36mtflops: 59.10  [35mmfu: 18.94%[39m
+[rank3]:[titan] 2025-06-15 10:21:02,339 - root - INFO - [31mstep:  7  [32mloss:  9.4705  [33mmemory: 23.97GiB(60.70%)  [34mtps: 5,267  [36mtflops: 53.20  [35mmfu: 17.05%[39m
+[rank0]:[titan] 2025-06-15 10:21:02,339 - root - INFO - [31mstep:  7  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,267  [36mtflops: 53.20  [35mmfu: 17.05%[39m
+[rank2]:[titan] 2025-06-15 10:21:02,336 - root - INFO - [31mstep:  7  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,266  [36mtflops: 53.19  [35mmfu: 17.05%[39m
+[rank1]:[titan] 2025-06-15 10:21:02,336 - root - INFO - [31mstep:  7  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,266  [36mtflops: 53.19  [35mmfu: 17.05%[39m
+[rank3]:[titan] 2025-06-15 10:21:03,753 - root - INFO - [31mstep:  8  [32mloss:  9.2718  [33mmemory: 23.97GiB(60.70%)  [34mtps: 5,797  [36mtflops: 58.56  [35mmfu: 18.77%[39m
+[rank0]:[titan] 2025-06-15 10:21:03,753 - root - INFO - [31mstep:  8  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,795  [36mtflops: 58.54  [35mmfu: 18.76%[39m
+[rank2]:[titan] 2025-06-15 10:21:03,750 - root - INFO - [31mstep:  8  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,794  [36mtflops: 58.52  [35mmfu: 18.76%[39m
+[rank1]:[titan] 2025-06-15 10:21:03,750 - root - INFO - [31mstep:  8  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,795  [36mtflops: 58.53  [35mmfu: 18.76%[39m
+[rank3]:[titan] 2025-06-15 10:21:05,168 - root - INFO - [31mstep:  9  [32mloss:  8.9725  [33mmemory: 23.97GiB(60.70%)  [34mtps: 5,793  [36mtflops: 58.51  [35mmfu: 18.75%[39m
+[rank0]:[titan] 2025-06-15 10:21:05,168 - root - INFO - [31mstep:  9  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,791  [36mtflops: 58.49  [35mmfu: 18.75%[39m
+[rank2]:[titan] 2025-06-15 10:21:05,165 - root - INFO - [31mstep:  9  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,791  [36mtflops: 58.49  [35mmfu: 18.75%[39m
+[rank1]:[titan] 2025-06-15 10:21:05,165 - root - INFO - [31mstep:  9  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,790  [36mtflops: 58.49  [35mmfu: 18.75%[39m
+[rank3]:[titan] 2025-06-15 10:21:06,579 - root - INFO - [31mstep: 10  [32mloss:  8.8416  [33mmemory: 23.97GiB(60.70%)  [34mtps: 5,828  [36mtflops: 58.86  [35mmfu: 18.87%[39m
+[rank0]:[titan] 2025-06-15 10:21:06,578 - root - INFO - [31mstep: 10  [32mloss: -1.0000  [33mmemory:  8.84GiB(22.37%)  [34mtps: 5,813  [36mtflops: 58.71  [35mmfu: 18.82%[39m
+[rank1]:[titan] 2025-06-15 10:21:06,575 - root - INFO - [31mstep: 10  [32mloss: -1.0000  [33mmemory:  6.96GiB(17.62%)  [34mtps: 5,813  [36mtflops: 58.71  [35mmfu: 18.82%[39m
+[rank2]:[titan] 2025-06-15 10:21:06,575 - root - INFO - [31mstep: 10  [32mloss: -1.0000  [33mmemory:  6.82GiB(17.28%)  [34mtps: 5,812  [36mtflops: 58.71  [35mmfu: 18.82%[39m
+[rank3]:[titan] 2025-06-15 10:21:07,082 - root - INFO - Dumping profiler traces at step 10
+[rank0]:[titan] 2025-06-15 10:21:07,078 - root - INFO - Dumping profiler traces at step 10
+[rank3]:[titan] 2025-06-15 10:21:07,298 - root - INFO - Finished dumping profiler traces in 0.22 seconds
+[rank3]:[titan] 2025-06-15 10:21:07,300 - root - INFO - Training completed
+[rank0]:[titan] 2025-06-15 10:21:07,294 - root - INFO - Finished dumping profiler traces in 0.22 seconds
+[rank0]:[titan] 2025-06-15 10:21:07,295 - root - INFO - Sleeping 2 seconds for other ranks to complete
+[rank1]:[titan] 2025-06-15 10:21:07,240 - root - INFO - Dumping profiler traces at step 10
+[rank2]:[titan] 2025-06-15 10:21:07,231 - root - INFO - Dumping profiler traces at step 10
+[rank1]:[titan] 2025-06-15 10:21:07,522 - root - INFO - Finished dumping profiler traces in 0.28 seconds
+[rank1]:[titan] 2025-06-15 10:21:07,523 - root - INFO - Training completed
+[rank2]:[titan] 2025-06-15 10:21:07,511 - root - INFO - Finished dumping profiler traces in 0.28 seconds
+[rank2]:[titan] 2025-06-15 10:21:07,511 - root - INFO - Training completed
+[rank2]:[titan] 2025-06-15 10:21:07,810 - root - INFO - Process group destroyed.
+[rank0]:[titan] 2025-06-15 10:21:09,297 - root - INFO - Training completed
+[rank3]:[titan] 2025-06-15 10:21:09,335 - root - INFO - Process group destroyed.
+[rank1]:[titan] 2025-06-15 10:21:09,358 - root - INFO - Process group destroyed.
+[rank0]:[titan] 2025-06-15 10:21:09,672 - root - INFO - Process group destroyed.
