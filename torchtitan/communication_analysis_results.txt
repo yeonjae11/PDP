@@ -1,0 +1,199 @@
+# Communication Volume Analysis for Different Model Configurations
+
+
+================================================================================
+Model: llama3_8b, TP Size: 1, PP Size: 4
+Hidden Size: 4096, Intermediate Size: 14336
+Sequence Length: 1024, Batch Size: 8
+--------------------------------------------------------------------------------
+
+
+--- Communication Analysis for a Single Transformer Block ---
+Hidden Size: 4096
+Intermediate Size: 14336
+Sequence Length: 1024
+Batch Size: 8
+TP Size: 1
+Data Type: bfloat16 (2 bytes)
+
+--- Tensor Parallelism Communication (Single Block) ---
+Forward Pass:
+  Reduce-Scatter: 0.00 MB
+  All-Gather: 0.00 MB
+Backward Pass:
+  Reduce-Scatter (3 operations): 0.00 MB
+  All-Gather (4 operations): 0.00 MB
+
+--- Pipeline Communication Sizes (with TP) ---
+Forward Activation Size: 64.00 MB
+
+
+================================================================================
+Model: llama3_8b, TP Size: 2, PP Size: 2
+Hidden Size: 4096, Intermediate Size: 14336
+Sequence Length: 1024, Batch Size: 8
+--------------------------------------------------------------------------------
+
+
+--- Communication Analysis for a Single Transformer Block ---
+Hidden Size: 4096
+Intermediate Size: 14336
+Sequence Length: 1024
+Batch Size: 8
+TP Size: 2
+Data Type: bfloat16 (2 bytes)
+
+--- Tensor Parallelism Communication (Single Block) ---
+Forward Pass:
+  Reduce-Scatter: 32.00 MB
+  All-Gather: 32.00 MB
+Backward Pass:
+  Reduce-Scatter (3 operations): 96.00 MB
+  All-Gather (4 operations): 128.00 MB
+
+--- Pipeline Communication Sizes (with TP) ---
+Forward Activation Size: 32.00 MB
+
+
+================================================================================
+Model: llama3_8b, TP Size: 4, PP Size: 1
+Hidden Size: 4096, Intermediate Size: 14336
+Sequence Length: 1024, Batch Size: 8
+--------------------------------------------------------------------------------
+
+
+--- Communication Analysis for a Single Transformer Block ---
+Hidden Size: 4096
+Intermediate Size: 14336
+Sequence Length: 1024
+Batch Size: 8
+TP Size: 4
+Data Type: bfloat16 (2 bytes)
+
+--- Tensor Parallelism Communication (Single Block) ---
+Forward Pass:
+  Reduce-Scatter: 48.00 MB
+  All-Gather: 48.00 MB
+Backward Pass:
+  Reduce-Scatter (3 operations): 144.00 MB
+  All-Gather (4 operations): 192.00 MB
+
+--- Pipeline Communication Sizes (with TP) ---
+Forward Activation Size: 16.00 MB
+
+
+================================================================================
+Model: qwen_1_5b, TP Size: 1, PP Size: 4
+Hidden Size: 1536, Intermediate Size: 8960
+Sequence Length: 2048, Batch Size: 16
+--------------------------------------------------------------------------------
+
+
+--- Communication Analysis for a Single Transformer Block ---
+Hidden Size: 1536
+Intermediate Size: 8960
+Sequence Length: 2048
+Batch Size: 16
+TP Size: 1
+Data Type: bfloat16 (2 bytes)
+
+--- Tensor Parallelism Communication (Single Block) ---
+Forward Pass:
+  Reduce-Scatter: 0.00 MB
+  All-Gather: 0.00 MB
+Backward Pass:
+  Reduce-Scatter (3 operations): 0.00 MB
+  All-Gather (4 operations): 0.00 MB
+
+--- Pipeline Communication Sizes (with TP) ---
+Forward Activation Size: 96.00 MB
+
+
+================================================================================
+Model: qwen_1_5b, TP Size: 2, PP Size: 2
+Hidden Size: 1536, Intermediate Size: 8960
+Sequence Length: 2048, Batch Size: 16
+--------------------------------------------------------------------------------
+
+
+--- Communication Analysis for a Single Transformer Block ---
+Hidden Size: 1536
+Intermediate Size: 8960
+Sequence Length: 2048
+Batch Size: 16
+TP Size: 2
+Data Type: bfloat16 (2 bytes)
+
+--- Tensor Parallelism Communication (Single Block) ---
+Forward Pass:
+  Reduce-Scatter: 48.00 MB
+  All-Gather: 48.00 MB
+Backward Pass:
+  Reduce-Scatter (3 operations): 144.00 MB
+  All-Gather (4 operations): 192.00 MB
+
+--- Pipeline Communication Sizes (with TP) ---
+Forward Activation Size: 48.00 MB
+
+
+================================================================================
+Model: qwen_0_5b, TP Size: 1, PP Size: 4
+Hidden Size: 896, Intermediate Size: 4864
+Sequence Length: 2048, Batch Size: 32
+--------------------------------------------------------------------------------
+
+
+--- Communication Analysis for a Single Transformer Block ---
+Hidden Size: 896
+Intermediate Size: 4864
+Sequence Length: 2048
+Batch Size: 32
+TP Size: 1
+Data Type: bfloat16 (2 bytes)
+
+--- Tensor Parallelism Communication (Single Block) ---
+Forward Pass:
+  Reduce-Scatter: 0.00 MB
+  All-Gather: 0.00 MB
+Backward Pass:
+  Reduce-Scatter (3 operations): 0.00 MB
+  All-Gather (4 operations): 0.00 MB
+
+--- Pipeline Communication Sizes (with TP) ---
+Forward Activation Size: 112.00 MB
+
+
+================================================================================
+Model: qwen_0_5b, TP Size: 2, PP Size: 2
+Hidden Size: 896, Intermediate Size: 4864
+Sequence Length: 2048, Batch Size: 32
+--------------------------------------------------------------------------------
+
+
+--- Communication Analysis for a Single Transformer Block ---
+Hidden Size: 896
+Intermediate Size: 4864
+Sequence Length: 2048
+Batch Size: 32
+TP Size: 2
+Data Type: bfloat16 (2 bytes)
+
+--- Tensor Parallelism Communication (Single Block) ---
+Forward Pass:
+  Reduce-Scatter: 56.00 MB
+  All-Gather: 56.00 MB
+Backward Pass:
+  Reduce-Scatter (3 operations): 168.00 MB
+  All-Gather (4 operations): 224.00 MB
+
+--- Pipeline Communication Sizes (with TP) ---
+Forward Activation Size: 56.00 MB
+
+
+
+================================================================================
+SUMMARY TABLE
+================================================================================
+
+Model        Strategy   TP Comm MB/block     Activation MB   Gradient MB    
+---------------------------------------------------------------------------
